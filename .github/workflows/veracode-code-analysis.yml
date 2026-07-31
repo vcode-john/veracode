@@ -43,7 +43,7 @@ jobs:
 
       - name: Configure Veracode onboarding
         id: veracode_config
-        uses: vcode-john/veracode-config@v1
+        uses: vcode-john/veracode-config@v0.01
         with:
           veracode_api_id: ${{ secrets.VERACODE_API_ID }}
           veracode_api_key: ${{ secrets.VERACODE_API_KEY }}
