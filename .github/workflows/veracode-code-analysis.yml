@@ -48,7 +48,7 @@ jobs:
           veracode_api_id: ${{ secrets.VERACODE_API_ID }}
           veracode_api_key: ${{ secrets.VERACODE_API_KEY }}
           business_criticality: MEDIUM
-          application_name: ${{ github.event.client_payload.repository.name }}
+          application_name: ${{ github.event.client_payload.user_config.profile_name }}
     
   register:
     needs: config_check
