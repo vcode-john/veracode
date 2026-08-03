@@ -33,25 +33,7 @@ on:
       - ruby-policy-scan
 
 jobs:
-  config_check:
-    runs-on: ubuntu-latest
-    outputs:
-      app_guid: ${{ steps.veracode_config.outputs.application_guid }}
-      workflow_config: ${{ steps.veracode_config.outputs.workflow_config_json }}
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Configure Veracode onboarding
-        id: veracode_config
-        uses: vcode-john/veracode-config@v0.06
-        with:
-          veracode_api_id: ${{ secrets.VERACODE_API_ID }}
-          veracode_api_key: ${{ secrets.VERACODE_API_KEY }}
-          business_criticality: MEDIUM
-          application_name: ${{ github.event.client_payload.user_config.profile_name }}
-    
   register:
-    needs: config_check
     uses: ./.github/workflows/veracode-check-run.yml
     with:
       check_run_name: ${{ github.workflow }} - ${{ contains(github.event.action, 'policy') && 'Policy' || 'Pipeline' }}
